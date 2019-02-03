@@ -1,5 +1,4 @@
 <!doctype html>
-<html>
 
 <html lang="en">
 
@@ -28,8 +27,8 @@
 <body>
     <p><i>Note: Discord has a 2000 character limit, which includes the spoiler || characters themselves.</i></p>
     <form id="formTextToSpoil" onsubmit="spoilIt();return false">
+        <label for="inputTextToSpoil" class="hidden">Text to spoil:</label>
         <textarea id="inputTextToSpoil" placeholder="Type your text here..." form="formTextToSpoil" rows="4" cols="50"></textarea>
-        <!--Text to spoil: <input type="textarea" id="inputTextToSpoil"><br>-->
         <p id="errorMsg" class="redError"></p>
         <input type="button" value="Spoil it" onclick="spoilIt();" />
     </form><br>
