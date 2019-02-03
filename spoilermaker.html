@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Spoiler Maker</title>
+    <meta name="description" content="B4shful's Spoiler Maker">
+    <meta name="author" content="B4shful">
+    <style>
+        textarea{
+            max-width: 95%;
+        }
+        .redError{
+                color: red
+        }
+        .hidden{
+            display: none;
+        }
+        </style>
+</head>
+<h1>
+    B4shful's Spoiler Maker
+</h1>
+
+<body>
+    <p><i>Note: Discord has a 2000 character limit, which includes the spoiler || characters themselves.</i></p>
+    <form id="formTextToSpoil" onsubmit="spoilIt();return false">
+        <textarea id="inputTextToSpoil" placeholder="Type your text here..." form="formTextToSpoil" rows="4" cols="50"></textarea>
+        <!--Text to spoil: <input type="textarea" id="inputTextToSpoil"><br>-->
+        <p id="errorMsg" class="redError"></p>
+        <input type="button" value="Spoil it" onclick="spoilIt();" />
+    </form><br>
+    <h2 id="yourSpoiledMessage" class="hidden">Your spoiled message:<br><br></h2>
+    <textarea id="spoiledMessage" class="hidden" rows="4" cols="50">
+    </textarea><br>
+
+    <div id="copyButton" class="hidden">
+        <input type="button" value="Copy" onclick="copyToClipboard(spoiledTextFinal);">
+    </div>
+    <footer>
+        <p>Made by B4shful, click <a href="https://twitter.com/pozijam">here</a> to send hatemail on Twitter.</p>
+    </footer>
+
+    <script>
+        var form = document.getElementById("formTextToSpoil");
+        var inputTextToSpoil = "";
+
+        function spoilIt() {
+            var inputTextToSpoil = form.elements[0].value;
+            //alert("The form was submitted");
+            if (!inputTextToSpoil) {
+                document.getElementById("spoiledMessage").style.display = "none";
+                document.getElementById("errorMsg").innerHTML = "No spoiler text provided!";
+                //alert("No spoiler text provided!");
+                document.getElementById("yourSpoiledMessage").style.display = "none";
+                document.getElementById("copyButton").style.display = "none";
+
+            } else {
+                document.getElementById("errorMsg").innerHTML = "";
+                document.getElementById("copyButton").style.display = "inline";
+                document.getElementById("yourSpoiledMessage").style.display = "inline";
+                document.getElementById("spoiledMessage").style.display = "inline";
+            }
+            var spoiledText = "||";
+            var i;
+            for (i = 0; i < inputTextToSpoil.length; i++) {
+                spoiledText += inputTextToSpoil.charAt(i) + "||||";
+
+            }
+            spoiledTextFinal = spoiledText.slice(0, -2);
+            document.getElementById("spoiledMessage").innerHTML = spoiledTextFinal;
+        }
+        const copyToClipboard = str => {
+            const el = document.createElement("textarea");
+            el.value = str;
+            el.setAttribute("readonly", "");
+            el.style.position = "absolute";
+            el.style.left = "-9999px";
+            document.body.appendChild(el);
+            const selected =
+                document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+            el.select();
+            document.execCommand("copy");
+            document.body.removeChild(el);
+            if (selected) {
+                document.getSelection().removeAllRanges();
+                document.getSelection().addRange(selected);
+            }
+        }
+        var tx = document.getElementById("inputTextToSpoil");
+        tx.setAttribute('style', 'height:' + (tx.scrollHeight) + 'px;overflow-y:hidden;');
+        tx.addEventListener("input", OnInput, false);
+
+        function OnInput(e) {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        }
+    </script>
+
+</body>
+
+
+
+</html>
