@@ -20,7 +20,17 @@
         .hidden{
             display: none;
         }
-        </style>
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+    </style>
 </head>
 <h1>
     B4shful's Spoiler Maker
@@ -29,7 +39,7 @@
 <body>
     <p><i>Note: Discord has a 2000 character limit, which includes the spoiler || characters themselves.</i></p>
     <form id="formTextToSpoil" onsubmit="spoilIt();return false">
-        <label for="inputTextToSpoil" class="hidden">Text to spoil:</label>
+        <label for="inputTextToSpoil" class="visuallyhidden">Text to spoil:</label>
         <textarea id="inputTextToSpoil" placeholder="Type your text here..." form="formTextToSpoil" rows="4" cols="50"></textarea>
         <p id="errorMsg" class="redError"></p>
         <input type="button" value="Spoil it" onclick="spoilIt();" />
